@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>カスタムログインフォーム</title>
-<style>
+<title>ログイン</title>
+    <style>
     body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
     form { background: white; padding: 2em; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
     input[type="text"], input[type="password"] { width: 100%; padding: 0.8em; margin-top: 20px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
@@ -12,12 +12,13 @@
 </style>
 </head>
 <body>
-<form action="main.php" method="POST">
-    <label for="username">ユーザー名:</label>
-    <input type="text" id="username" name="username" required>
-    <label for="password">パスワード:</label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">ログイン</button>
-</form>
+  <h1>ログイン</h1>
+  <form action="login.php" method="post">
+    <label for="username">ユーザー名:</label><br>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">パスワード:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="ログイン">
+  </form>
 </body>
 </html>

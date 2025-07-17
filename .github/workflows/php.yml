@@ -1,4 +1,4 @@
-name: Coding Style
+name: php
 on:
 push:
 branches:

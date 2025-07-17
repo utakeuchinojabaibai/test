@@ -1,25 +1,32 @@
-name: PHP Unit
-on: [ push, pull_request ]
-
+name: Coding Style
+on:
+push:
+branches:
+- master
+pull_request:
+types: [ assigned, opened, synchronize, reopened ]
+schedule:
+- cron: '1 * * * *'
 jobs:
-  build:
-    name: Testing
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Installing PHP
-        uses: shivammathur/setup-php@master
-        with:
-          php-version: 8.2
-          extension-csv: mbstring, xdebug
-      - name: Add Plugin
-        run: sudo apt install -y php7.4-xml
-      - name: Check PHP Version
-        run: php -v
-      - name: Check Composer Version
-        run: composer -V
-      - name: Check PHP Extensions
-        run: php -m
-      - name: Execution PHP Unit
-        run: cp .env.test .env && composer install && php artisan key:generate && composer run test
+nette_cc:
+name: Nette Code Checker
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+- uses: shivammathur/setup-php@v2
+with:
+php-version: 7.4
+coverage: none
+- run: composer create-project nette/code-checker temp/code-checker ^3 --no-progress
+- run: php temp/code-checker/code-checker --strict-types --no-progress
+nette_cs:
+name: Nette Coding Standard
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+- uses: shivammathur/setup-php@v2
+with:
+php-version: 8.0
+coverage: none
+- run: composer create-project nette/coding-standard temp/coding-standard ^3 --no-progress --ignore-platform-reqs
+- run: php temp/coding-standard/ecs check src

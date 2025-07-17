@@ -1,0 +1,25 @@
+name: PHP Unit
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Installing PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 7.4
+          extension-csv: mbstring, xdebug
+      - name: Add Plugin
+        run: sudo apt install -y php7.4-xml
+      - name: Check PHP Version
+        run: php -v
+      - name: Check Composer Version
+        run: composer -V
+      - name: Check PHP Extensions
+        run: php -m
+      - name: Execution PHP Unit
+        run: cp .env.test .env && composer install && php artisan key:generate && composer run test

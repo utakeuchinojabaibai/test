@@ -1,5 +1,11 @@
 {
-    "require": {
-        "monolog/monolog": "1.0.*"
-    }
+    "name": "utakeuchinojabaibai/test",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "monolog/monolog": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
